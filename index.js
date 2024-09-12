@@ -73,10 +73,11 @@ app.get("/api/shorturl/:id", async (req, res) => {
 
 
 
+
 //Server Configuration
 const runServer = async() => {
   try {
-    const dB = await mongoose.connect("mongodb+srv://pk:05iLpyzG1ZDWz3wF@url-cluster.8ogzy.mongodb.net/?retryWrites=true&w=majority&appName=URL-CLUSTER")
+    const dB = await mongoose.connect(process.env.MONGOOSE_URL)
     console.log("Connected to database")
 
     app.listen(port, function() {
@@ -88,6 +89,3 @@ const runServer = async() => {
 }
 
 runServer()
-
-
-
