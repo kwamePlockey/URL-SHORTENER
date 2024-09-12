@@ -36,15 +36,14 @@ app.post('/api/shorturl', async (req, res) => {
   try {
     //Return total number of docs in dB
     let numDocs = await URL.countDocuments({})
-    console.log(`Total number of docs in dB: ${numDocs}`)
+    
 
     const createdDoc = await URL.create({original_url: url, short_url: `${numDocs + 1}`})
     const objURL = await URL.findOne(createdDoc).select({_id:0, original_url:1, short_url:1})
     res.status(200).json(objURL)
-    console.log(result)
-
+    console.log(objURL)
+    return;
   } catch (err) {
-    res.status(500).send(err.message)
     console.error(err)
   }  
 });
